@@ -11,3 +11,12 @@ kubectl apply -f ./calico.yaml
 # Install Kube-Bench
 wget https://raw.githubusercontent.com/aquasecurity/kube-bench/main/job.yaml
 kubectl apply -f job.yaml
+kubectl logs -l "app=kube-bench"
+
+# Kube-Bench Job Node
+wget https://raw.githubusercontent.com/aquasecurity/kube-bench/main/job-node.yaml
+kubectl apply -f job.yaml
+
+# Health Checks
+kubectl logs -l "app=kube-bench"
+kubectl logs -l "job-name=kube-bench"
