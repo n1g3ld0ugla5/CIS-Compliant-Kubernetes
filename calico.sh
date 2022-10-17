@@ -33,5 +33,6 @@ kubectl logs -l "job-name=kube-bench-master"  -n cis-benchmarks
 # Confirm Cluster Configuration
 kubectl version
 kubectl cluster-info
-sudo docker run --rm -v 'pwd':/host aquasec/kube-bench:latest install
+sudo snap install docker
+sudo docker run --rm -v `pwd`:/host docker.io/aquasec/kube-bench:latest install
 ./kube-bench
