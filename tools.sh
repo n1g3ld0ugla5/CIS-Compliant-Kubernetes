@@ -29,14 +29,14 @@ echo "deb https://download.falco.org/packages/deb stable main" | tee -a /etc/apt
 apt-get update -y
 
 # Install kernel headers:
-apt-get -y install linux-headers-$(uname -r)
+sudo apt-get -y install linux-headers-$(uname -r)
 
 # Install Falco:
-apt-get install -y falco
+sudo apt-get install -y falco
 
 # If you installed Falco by using the DEB or the RPM package, you can start the service by running:
-systemctl enable falco
-systemctl start falco
+sudo systemctl enable falco
+sudo systemctl start falco
 
 # You can also view the Falco logs using journalctl.
 journalctl -fu falco
