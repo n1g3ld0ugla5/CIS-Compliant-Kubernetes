@@ -10,17 +10,17 @@ kubectl apply -f ./calico.yaml
 kubectl create ns cis-benchmarks
 
 # Install Kube-Bench
-wget https://raw.githubusercontent.com/aquasecurity/kube-bench/main/job.yaml -n cis-benchmarks
-kubectl apply -f job.yaml
+wget https://raw.githubusercontent.com/aquasecurity/kube-bench/main/job.yaml
+kubectl apply -f job.yaml -n cis-benchmarks
 kubectl logs -l "app=kube-bench"
 
 # Kube-Bench Job Node
-wget https://raw.githubusercontent.com/aquasecurity/kube-bench/main/job-node.yaml -n cis-benchmarks
-kubectl apply -f job.yaml
+wget https://raw.githubusercontent.com/aquasecurity/kube-bench/main/job-node.yaml
+kubectl apply -f job.yaml -n cis-benchmarks
 
 # Kube-Bench Job Master
-wget https://raw.githubusercontent.com/aquasecurity/kube-bench/main/job-master.yaml -n cis-benchmarks
-kubectl apply -f job-master.yaml
+wget https://raw.githubusercontent.com/aquasecurity/kube-bench/main/job-master.yaml
+kubectl apply -f job-master.yaml -n cis-benchmarks
 
 # Waits 10 seconds before checking comopliance reports
 sleep 10s
