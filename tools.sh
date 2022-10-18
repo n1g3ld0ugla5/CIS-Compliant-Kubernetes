@@ -22,13 +22,33 @@ kubectl apply -f job.yaml -n cis-benchmarks
 wget https://raw.githubusercontent.com/aquasecurity/kube-bench/main/job-master.yaml
 kubectl apply -f job-master.yaml -n cis-benchmarks
 
-# Waits 10 seconds before checking comopliance reports
-sleep 10s
+# Trust the falcosecurity GPG key, configure the apt repository, and update the package list:
+
+curl -s https://falco.org/repo/falcosecurity-3672BA8F.asc | apt-key add -
+echo "deb https://download.falco.org/packages/deb stable main" | tee -a /etc/apt/sources.list.d/falcosecurity.list
+apt-get update -y
+
+# Install kernel headers:
+apt-get -y install linux-headers-$(uname -r)
+
+# Install Falco:
+apt-get install -y falco
+
+# If you installed Falco by using the DEB or the RPM package, you can start the service by running:
+systemctl enable falco
+systemctl start falco
+
+# You can also view the Falco logs using journalctl.
+journalctl -fu falco
+sleep 5
 
 # Health Checks
 kubectl logs -l "app=kube-bench"  -n cis-benchmarks
+sleep 5
 kubectl logs -l "job-name=kube-bench"  -n cis-benchmarks
+sleep 5
 kubectl logs -l "job-name=kube-bench-master"  -n cis-benchmarks
+sleep 5
 
 # Confirm Cluster Configuration
 kubectl version
