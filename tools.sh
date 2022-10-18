@@ -33,6 +33,10 @@ kubectl logs -l "job-name=kube-bench-master"  -n cis-benchmarks
 # Confirm Cluster Configuration
 kubectl version
 kubectl cluster-info
+
+# [FAIL] --protect-kernel-defaults argument is set to true
+
+#Run as an admin
 sudo snap install docker
 sudo docker run --rm -v `pwd`:/host docker.io/aquasec/kube-bench:latest install
-./kube-bench
+sudo ./kube-bench
