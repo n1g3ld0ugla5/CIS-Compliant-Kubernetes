@@ -56,3 +56,6 @@ kubectl taint nodes --all node-role.kubernetes.io/master-
 
 # Confirm one master node is created
 kubectl get nodes -o wide
+
+# Check pod status
+kubectl get pods -A
